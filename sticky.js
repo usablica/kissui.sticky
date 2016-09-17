@@ -131,10 +131,8 @@
 
         element.parentElement.insertBefore(placeholder, element);
 
-        setTimeout(function () {
           // adding placeholder to kissuiPosition to be able to restore the element later
-          kissuiPosition.add(placeholder, 'top');
-        }, 500);
+          kissuiPosition.add(placeholder, 'in');
 
         element.className += ' kui sticky element';
         element.style.left = props.left + 'px';
@@ -157,7 +155,11 @@
       _handleTop(element, event);
     });
 
-    kissuiPosition.on('alreadyTop', function (element, event) {
+    kissuiPosition.on('in', function (element, event) {
+      _handleTop(element, event);
+    });
+
+    kissuiPosition.on('+top', function (element, event) {
       if (element.id.indexOf(_options.placeholderId) == -1) {
         // we call this only for non-placeholder elements
         _handleTop(element, event);

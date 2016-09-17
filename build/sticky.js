@@ -148,6 +148,10 @@
   *
   */
   function _position (element, event) {
+    //element should be added to the page
+    //this case happens when element is removed from the page so we ignore the element
+    if (element.parentNode == null) return;
+
     //because we can have compound events
     var elementEvents = event.split(' ');
 
@@ -495,11 +499,8 @@
 
         element.parentElement.insertBefore(placeholder, element);
 
-        setTimeout(function () {
           // adding placeholder to kissuiPosition to be able to restore the element later
-          kissuiPosition.add(placeholder, 'top');
-        }, 500);
-
+          kissuiPosition.add(placeholder, 'in');
 
         element.className += ' kui sticky element';
         element.style.left = props.left + 'px';
@@ -519,6 +520,11 @@
     _populate.call(this);
 
     kissuiPosition.on('top', function (element, event) {
+      _handleTop(element, event);
+    });
+
+    kissuiPosition.on('in', function (element, event) {
+      console.log('got in')
       _handleTop(element, event);
     });
 
