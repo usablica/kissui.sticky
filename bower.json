@@ -1,0 +1,33 @@
+{
+  "name": "kissui.sticky",
+  "homepage": "https://github.com/usablica/kissui.sticky",
+  "authors": [
+    "Afshin Mehrabani <afshin.meh@gmail.com>"
+  ],
+  "description": "Sticky position that works everywhere",
+  "main": "index.js",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "keywords": [
+    "css3",
+    "css",
+    "scroll",
+    "html5",
+    "sticky",
+    "position",
+    "kissui"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "kissui.position": "latest"
+  }
+}

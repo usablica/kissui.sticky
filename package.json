@@ -1,0 +1,37 @@
+{
+  "name": "kissui.sticky",
+  "version": "0.1.0",
+  "description": "Simple and lightweight sticky position that works everywhere",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/usablica/kissui.sticky.git"
+  },
+  "keywords": [
+    "css3",
+    "css",
+    "scroll",
+    "html5",
+    "position",
+    "sticky",
+    "kissui"
+  ],
+  "dependencies": {
+    "kissui.position": "^0.1.0"
+  },
+  "author": "Afshin Mehrabani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/usablica/kissui.sticky/issues"
+  },
+  "homepage": "https://github.com/usablica/kissui.sticky#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-uglify": "^2.0.0"
+  }
+}
