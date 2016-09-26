@@ -46,6 +46,7 @@
   _options.events = [
     'in',
     'out',
+    'partially',
     'middle',
     'top',
     'bottom',
@@ -158,6 +159,10 @@
     //a boolean flag to check if we should trigger the event
     var trigger = true;
 
+    //a flag to process `out` events
+    //e.g. `out top`
+    var isOut = false;
+
     //element's position
     var top = element.getBoundingClientRect().top;
     var bottom = element.getBoundingClientRect().bottom;
@@ -176,45 +181,60 @@
 
     // check `in` event
     if (elementEvents.indexOf('in') > -1) {
-     if (top >= 0 && left >= 0 && bottom <= height && right <= width) {
-       trigger = trigger && true;
-     } else {
-       trigger = false;
-     }
+      if (top >= 0 && left >= 0 && bottom <= height && right <= width) {
+        trigger = trigger && true;
+      } else {
+        trigger = false;
+      }
     }
 
     // check `out` event
     if (elementEvents.indexOf('out') > -1) {
-     if ((top + elementHeight) < 0 ||
-         (left + elementWidth) < 0 ||
-         left > width ||
-         top > height) {
-       trigger = trigger && true;
-     } else {
-       trigger = false;
-     }
+      //to handle the `out {whatever}` events later in this procedure
+      isOut = true;
+
+      if (elementEvents.indexOf('partially') > -1) {
+        // partially out
+        if (top < 0 || left < 0 || right > width || bottom > height) {
+          trigger = trigger && true;
+        } else {
+          trigger = false;
+        }
+      } else {
+        // element is fully out of page
+        if ((top + elementHeight) < 0 || (left + elementWidth) < 0 || left > width || top > height) {
+          trigger = trigger && true;
+        } else {
+          trigger = false;
+        }
+      }
     }
 
     // check `top` event
     if (elementEvents.indexOf('top') > -1) {
-     if (top == 0 || _between(0, top, topDelta)) {
-       trigger = trigger && true;
-     } else {
-       trigger = false;
-     }
-
-      if (top < 0) {
-        _emit('alreadyTop', element);
+      if (isOut) {
+        // it means when the element is out and in the top of the screen
+        if (top < 0) {
+          trigger = trigger && true;
+        } else {
+          trigger = false;
+        }
+      } else {
+        if (top == 0 || _between(0, top, topDelta)) {
+          trigger = trigger && true;
+        } else {
+          trigger = false;
+        }
       }
     }
 
     // check `left` event
     if (elementEvents.indexOf('left') > -1) {
-     if (left == 0 || _between(0, left, leftDelta)) {
-       trigger = trigger && true;
-     } else {
-       trigger = false;
-     }
+      if (left == 0 || _between(0, left, leftDelta)) {
+        trigger = trigger && true;
+      } else {
+        trigger = false;
+      }
     }
 
     // check `right` event
@@ -257,6 +277,7 @@
       if (element.getAttribute('id')) {
         _emit(element.getAttribute('id'), element);
       }
+
       _emit(event, element);
       _emit('*', element, event);
     }
@@ -407,9 +428,14 @@
 
     for (var i = 0;i < elements.length;i++) {
       var element = elements[i];
-      var event = element.getAttribute(_options.attribute);
+      var className = element.getAttribute(_options.attribute);
+      var opts = {};
 
-      _add(element, {});
+      if (className && className != '') {
+        opts['className'] = className;
+      }
+
+      _add(element, opts);
     }
   };
 
@@ -420,11 +446,10 @@
     _elements.push({
       element: element,
       active: false,
-      top: NaN,
       opts: opts
     });
 
-    kissuiPosition.add(element, 'top');
+    kissuiPosition.add(element, 'partially out top');
   };
 
   /**
@@ -457,10 +482,13 @@
 
       // placeholder
       var placeholder = document.getElementById(_options.placeholderId + id);
-      console.log(_options.placeholderId + id, placeholder)
       placeholder.parentElement.removeChild(placeholder);
 
       element.className = element.className.replace('kui sticky element', '').trim();
+
+      if (typeof (elx.opts.className) != 'undefined') {
+        element.className = element.className.replace(elx.opts.className, '').trim();
+      }
     }
   };
 
@@ -499,10 +527,15 @@
 
         element.parentElement.insertBefore(placeholder, element);
 
-          // adding placeholder to kissuiPosition to be able to restore the element later
-          kissuiPosition.add(placeholder, 'in');
+        // adding placeholder to kissuiPosition to be able to restore the element later
+        kissuiPosition.add(placeholder, 'in');
 
         element.className += ' kui sticky element';
+
+        if (typeof (elx.opts.className) != 'undefined') {
+          element.className += ' ' + elx.opts.className;
+        }
+
         element.style.left = props.left + 'px';
         element.style.width = props.width + 'px';
         element.style.height = props.height + 'px';
@@ -524,11 +557,12 @@
     });
 
     kissuiPosition.on('in', function (element, event) {
-      console.log('got in')
       _handleTop(element, event);
     });
 
-    kissuiPosition.on('alreadyTop', function (element, event) {
+    kissuiPosition.on('partially out top', function (element, event) {
+      // it means when the element is completely out of viewport or even partially
+      // so we try to call the _handle* method
       if (element.id.indexOf(_options.placeholderId) == -1) {
         // we call this only for non-placeholder elements
         _handleTop(element, event);

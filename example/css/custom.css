@@ -88,4 +88,26 @@
   background-color: #c23321;
   border-color: #c23321;
 }
-
+.sticky_custom {
+    background-color: #fff;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    display: block;
+    z-index: 999;
+    -webkit-box-shadow: 0 1px 10px 1px #E6E6E6;
+    box-shadow: 0 1px 10px 1px #E6E6E6;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    -webkit-transition: all 0.2s; /* Safari */
+    transition: all 0.2s;
+}
+.demo_message .out {
+    display: none;
+}
+.demo_message.sticky_custom .out {
+    display: block;
+}
+.demo_message.sticky_custom .in {
+    display: none;
+}

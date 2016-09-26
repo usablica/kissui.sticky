@@ -11,25 +11,26 @@
   <link rel="stylesheet" href="./css/kissui.css">
   <link rel="stylesheet" href="./css/custom.css">
   <link rel="stylesheet" href="../build/sticky.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/kissui.scrollanim/0.3.0/scrollanim.min.css">
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div data-kui-anim="fadeIn" class="one-half column scrollanim custom-column" style="margin-top: 30%;">
+            <div data-kui-anim="fadeIn" class="one-half column custom-column" style="margin-top: 30%;">
                 <h4>Sticky</h4>
 
                 <p><b>Sticky</b> is a CSS and JavaScript library to add sticky position to any elements.</p>
 
-                <p>It's open-source (MIT), free and easy to use <i class="fa fa-heart" style="color: #D81818;"></i> Oh, and it's <b>1KB</b>.</p>
+                <p>It's open-source (MIT), free and easy to use <i class="fa fa-heart" style="color: #D81818;"></i> Oh, and it's <b>2KB</b>.</p>
 
                 <p>
-                <a class="github-button" href="https://github.com/usablica/kissui.scrollanim" data-icon="octicon-star" data-count-href="/usablica/kissui.scrollanim/stargazers" data-count-api="/repos/usablica/kissui.scrollanim#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star usablica/kissui.scrollanim on GitHub">Star</a>
-                <a class="github-button" href="https://github.com/usablica/kissui.scrollanim/fork" data-icon="octicon-repo-forked" data-count-href="/usablica/kissui.scrollanim/network" data-count-api="/repos/usablica/kissui.scrollanim#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork usablica/kissui.scrollanim on GitHub">Fork</a>
+                <a class="github-button" href="https://github.com/usablica/kissui.sticky" data-icon="octicon-star" data-count-href="/usablica/kissui.sticky/stargazers" data-count-api="/repos/usablica/kissui.sticky" data-count-aria-label="# stargazers on GitHub" aria-label="Star usablica/kissui.sticky on GitHub">Star</a>
+                <a class="github-button" href="https://github.com/usablica/kissui.sticky/fork" data-icon="octicon-repo-forked" data-count-href="/usablica/kissui.sticky/network" data-count-api="/repos/usablica/kissui.sticky#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork usablica/kissui.sticky on GitHub">Fork</a>
                 </p>
 
                 <p>
                     <!-- Sharingbutton Facebook -->
-                    <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fscrollanim.kissui.io" target="_blank" aria-label="">
+                    <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsticky.kissui.io" target="_blank" aria-label="">
                       <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
                         <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
                             <g>
@@ -41,7 +42,7 @@
                     </a>
 
                     <!-- Sharingbutton Twitter -->
-                    <a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Kissui.scrollanim%20is%20a%20CSS3%20and%20JavaScript%20scroll%20animation.%20It&#x27;s%20free%2C%20open-source%20and%20easy%20to%20use.&amp;url=http%3A%2F%2Fscrollanim.kissui.io" target="_blank" aria-label="">
+                    <a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Kissui.sticky%20is%20a%20CSS3%20and%20JavaScript%20scroll%20animation.%20It&#x27;s%20free%2C%20open-source%20and%20easy%20to%20use.&amp;url=http%3A%2F%2Fsticky.kissui.io" target="_blank" aria-label="">
                       <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
                         <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
                             <g>
@@ -53,7 +54,7 @@
                     </a>
 
                     <!-- Sharingbutton Google+ -->
-                    <a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fscrollanim.kissui.io" target="_blank" aria-label="">
+                    <a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fsticky.kissui.io" target="_blank" aria-label="">
                       <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
                         <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
                             <g>
@@ -66,8 +67,10 @@
                     </a>
                 </p>
 
-
-                <p>Want to see a <a href="javascript:void(0);">demo</a>? Ok, keep scrolling.</p>
+                <div class="demo_message" data-kui-sticky="sticky_custom">
+                    <span class="in">Want to see a <a href="javascript:void(0);">demo</a>? Ok, keep scrolling.</span>
+                    <span class="out"><b>Good job!</b> Now you can scroll top again to reverse it.</span>
+                </div>
             </div>
         </div>
     </div>
@@ -75,14 +78,14 @@
 
   <div class="container">
     <div class="row">
-      <div data-kui-sticky class="one-half column custom-column" style="margin-top: 25%;">
+      <div data-kui-anim="fadeIn" class="one-half column custom-column" style="margin-top: 25%;">
         <h4>Easy to use</h4>
 
-        <p><b>Scrollanim</b> has many builtin CSS3 animations to use. All you need to do is to add <code>data-kui-anim</code> attribute to your elements.</p>
+        <p><b>Sticky</b> is easy to use. All you need to do to enable sticky position is adding <code>data-kui-sticky</code> attribute to your elements.</p>
 
         <pre style="text-align: left;"> 
-            <code>&lt;div data-kui-anim=&quot;fadeIn&quot;&gt;
-  Show this with a fadeIn animation.
+            <code>&lt;div data-kui-sticky&gt;
+    Sticky position for this DIV
 &lt;/div&gt;</code>
         </pre>
 
@@ -94,62 +97,38 @@
       <div data-kui-anim="rubberBand" class="one-half column custom-column" style="margin-top: 25%;">
         <h4>Advanced mode</h4>
 
-        <p style="text-align: left;">Also, this is possible to add the animations using the JavaScript API.</p>
+        <p style="text-align: left;">Also, this is possible to add the sticky position using the JavaScript API.</p>
 
         <pre style="text-align: left;"> 
-            <code>kissuiScrollAnim.add(element, {
-  'in': 'fadeIn',
-  'out': 'fadeOut'
+            <code>kissuiSticky.add(element, {
+  'className': 'custom_class',
 });</code>
         </pre>
 
-        <p style="text-align: left;"><b>Scrolanim</b> supports all available positions for an element on the page. Also, you can use a compound event name (e.g. <code>in center middle</code>)</p>
+        <p style="text-align: left;"><b>Sticky</b> works with all types of elements. Also, you can pass the custom class name using attribute (e.g. <code>data-kui-sticky="custom_class"</code>)</p>
       </div>
     </div>
 
     <div class="row">
       <div data-kui-anim="bounce" class="one-half column custom-column" style="margin-top: 25%;">
-        <h4>CSS3 Animations</h4>
+        <h4>Compatibility</h4>
 
-        <p><b>Scrolanim</b> has many CSS3 animations to use. No JavaScript animations, better performance.</p>
-
-        <p>Works on desktop and portable devices perfectly.</p>
+        <p><b>Sticky</b> works perfectly in all major web browsers and all portable devices.</p>
       </div>
     </div>
-
-
-    <div class="row">
-      <div data-kui-anim="infinite pulse" class="one-half column custom-column" style="margin-top: 25%;">
-        <h4>Infinite animation</h4>
-
-        <p>Also, animations names accept an optional parameter <code>infinite</code> to repeat the animation forever.</p>
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="one-half column custom-column" style="margin-top: 25%;" id="specialelement">
-        <h4>Perfect event control</h4>
-
-        <p><b>Scrollanim</b> controls all elements with an extra care. You can attach events to almost all possible positions of an element on the page.</p>
-
-        <p>For instance, this element appears with a <code>fadeIn</code> animation but also gets a <code>pulse</code> animations when it's in the middle of the page.</p>
-      </div>
-    </div>
-
 
     <div class="row">
         <div data-kui-anim="bounceIn" class="one-half column custom-column" style="margin-top: 25%;margin-bottom: 25%;" id="lastone">
             <h4><i class="fa fa-heart" style="color: #D81818;"></i> Did you enjoy?</h4>
 
-            <p>That's great, we are glad you liked it. The next step is to use the CDN networks or download the project. Meanwhile, you can have a look at the <a href="https://github.com/usablica/kissui.scrollanim" target="_blank">documentation</a> page.</p>
+            <p>That's great, we are glad you liked it. The next step is to use the CDN networks or download the project. Meanwhile, you can have a look at the <a href="https://github.com/usablica/kissui.sticky" target="_blank">documentation</a> page.</p>
 
-            <a class="github-button" href="https://github.com/usablica/kissui.scrollanim" data-icon="octicon-star" data-count-href="/usablica/kissui.scrollanim/stargazers" data-count-api="/repos/usablica/kissui.scrollanim#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star usablica/kissui.scrollanim on GitHub">Star</a>
-            <a class="github-button" href="https://github.com/usablica/kissui.scrollanim/fork" data-icon="octicon-repo-forked" data-count-href="/usablica/kissui.scrollanim/network" data-count-api="/repos/usablica/kissui.scrollanim#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork usablica/kissui.scrollanim on GitHub">Fork</a>
+            <a class="github-button" href="https://github.com/usablica/kissui.sticky" data-icon="octicon-star" data-count-href="/usablica/kissui.sticky/stargazers" data-count-api="/repos/usablica/kissui.sticky#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star usablica/kissui.sticky on GitHub">Star</a>
+            <a class="github-button" href="https://github.com/usablica/kissui.sticky/fork" data-icon="octicon-repo-forked" data-count-href="/usablica/kissui.sticky/network" data-count-api="/repos/usablica/kissui.sticky#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork usablica/kissui.sticky on GitHub">Fork</a>
 
             <p>
                 <!-- Sharingbutton Facebook -->
-                <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fscrollanim.kissui.io" target="_blank" aria-label="">
+                <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsticky.kissui.io" target="_blank" aria-label="">
                   <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
                     <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
                         <g>
@@ -161,7 +140,7 @@
                 </a>
 
                 <!-- Sharingbutton Twitter -->
-                <a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Kissui.scrollanim%20is%20a%20CSS3%20and%20JavaScript%20scroll%20animation.%20It&#x27;s%20free%2C%20open-source%20and%20easy%20to%20use.&amp;url=http%3A%2F%2Fscrollanim.kissui.io" target="_blank" aria-label="">
+                <a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Kissui.sticky%20is%20a%20CSS3%20and%20JavaScript%20scroll%20animation.%20It&#x27;s%20free%2C%20open-source%20and%20easy%20to%20use.&amp;url=http%3A%2F%2Fsticky.kissui.io" target="_blank" aria-label="">
                   <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
                     <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
                         <g>
@@ -173,7 +152,7 @@
                 </a>
 
                 <!-- Sharingbutton Google+ -->
-                <a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fscrollanim.kissui.io" target="_blank" aria-label="">
+                <a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fsticky.kissui.io" target="_blank" aria-label="">
                   <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
                     <svg version="1.1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
                         <g>
@@ -190,6 +169,12 @@
 
   </div>
 
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/kissui.scrollanim/0.3.0/scrollanim.min.js'></script>
+  <script>
+    kissuiScrollAnim.setOptions({ 
+        'autoReset': false
+    });
+  </script>
   <script src='../build/sticky.js'></script>
 </body>
 </html>

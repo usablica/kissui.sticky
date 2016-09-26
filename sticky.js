@@ -39,9 +39,14 @@
 
     for (var i = 0;i < elements.length;i++) {
       var element = elements[i];
-      var event = element.getAttribute(_options.attribute);
+      var className = element.getAttribute(_options.attribute);
+      var opts = {};
 
-      _add(element, {});
+      if (className && className != '') {
+        opts['className'] = className;
+      }
+
+      _add(element, opts);
     }
   };
 
@@ -52,11 +57,10 @@
     _elements.push({
       element: element,
       active: false,
-      top: NaN,
       opts: opts
     });
 
-    kissuiPosition.add(element, 'top');
+    kissuiPosition.add(element, 'partially out top');
   };
 
   /**
@@ -89,10 +93,13 @@
 
       // placeholder
       var placeholder = document.getElementById(_options.placeholderId + id);
-      console.log(_options.placeholderId + id, placeholder)
       placeholder.parentElement.removeChild(placeholder);
 
       element.className = element.className.replace('kui sticky element', '').trim();
+
+      if (typeof (elx.opts.className) != 'undefined') {
+        element.className = element.className.replace(elx.opts.className, '').trim();
+      }
     }
   };
 
@@ -131,10 +138,15 @@
 
         element.parentElement.insertBefore(placeholder, element);
 
-          // adding placeholder to kissuiPosition to be able to restore the element later
-          kissuiPosition.add(placeholder, 'in');
+        // adding placeholder to kissuiPosition to be able to restore the element later
+        kissuiPosition.add(placeholder, 'in');
 
         element.className += ' kui sticky element';
+
+        if (typeof (elx.opts.className) != 'undefined') {
+          element.className += ' ' + elx.opts.className;
+        }
+
         element.style.left = props.left + 'px';
         element.style.width = props.width + 'px';
         element.style.height = props.height + 'px';
@@ -159,7 +171,9 @@
       _handleTop(element, event);
     });
 
-    kissuiPosition.on('+top', function (element, event) {
+    kissuiPosition.on('partially out top', function (element, event) {
+      // it means when the element is completely out of viewport or even partially
+      // so we try to call the _handle* method
       if (element.id.indexOf(_options.placeholderId) == -1) {
         // we call this only for non-placeholder elements
         _handleTop(element, event);
