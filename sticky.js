@@ -46,6 +46,9 @@
         opts['className'] = className;
       }
 
+      // to restore the cssText later
+      opts['cssText'] = element.style.cssText;
+
       _add(element, opts);
     }
   };
@@ -97,9 +100,15 @@
 
       element.className = element.className.replace('kui sticky element', '').trim();
 
+      if (/scrolled/gi.test(element.className)) {
+        element.className = element.className.replace('scrolled', '').trim();
+      }
+
       if (typeof (elx.opts.className) != 'undefined') {
         element.className = element.className.replace(elx.opts.className, '').trim();
       }
+
+      element.style.cssText = elx.opts['cssText'];
     }
   };
 
@@ -140,6 +149,7 @@
 
         // adding placeholder to kissuiPosition to be able to restore the element later
         kissuiPosition.add(placeholder, 'in');
+        kissuiPosition.add(placeholder, 'top');
 
         element.className += ' kui sticky element';
 
@@ -147,9 +157,17 @@
           element.className += ' ' + elx.opts.className;
         }
 
-        element.style.left = props.left + 'px';
-        element.style.width = props.width + 'px';
-        element.style.height = props.height + 'px';
+        element.style.cssText += 'left: ' + props.left + 'px!important;';
+        element.style.cssText += 'width:' + props.width + 'px!important;';
+
+        var elementHeight = parseInt(computedStyle.marginTop) + props.height;
+
+        if (elementHeight > window.innerHeight) {
+          element.style.cssText += 'height: 100%!important;';
+          element.className += ' scrolled';
+        } else {
+          element.style.cssText += 'height:' + props.height + 'px!important;';
+        }
 
         // set element's active flag to true so we can deactivate the sticky position later
         elx.active = true;
