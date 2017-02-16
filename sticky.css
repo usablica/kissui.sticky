@@ -5,3 +5,16 @@
 }
 .kui.sticky.placeholder {
 }
+
+.kui.sticky.scrolled::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+.kui.sticky {
+    overflow: -moz-scrollbars-none;  // Firefox
+}
+.kui.sticky.scrolled {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  // IE 10+
+}
